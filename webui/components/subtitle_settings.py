@@ -49,18 +49,22 @@ def render_font_settings(tr):
     font_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "resource", "fonts")
     font_names = get_fonts_cache(font_dir)
 
-    # 获取保存的字体设置
-    saved_font_name = config.ui.get("font_name", "")
-    saved_font_name_index = 0
-    if saved_font_name in font_names:
-        saved_font_name_index = font_names.index(saved_font_name)
+    saved_font_name = config.ui.get("font_name")
+    default_font = "SimHei"
 
-    # 字体选择
-    font_name = st.selectbox(
-        tr("Font"),
-        options=font_names,
-        index=saved_font_name_index
-    )
+    if not font_names:
+        font_name = saved_font_name or default_font
+        st.info(tr("未检测到内置字体，已使用系统默认字体"))
+    else:
+        saved_font_name_index = 0
+        if saved_font_name in font_names:
+            saved_font_name_index = font_names.index(saved_font_name)
+        font_name = st.selectbox(
+            tr("Font"),
+            options=font_names,
+            index=saved_font_name_index
+        )
+
     config.ui["font_name"] = font_name
     st.session_state['font_name'] = font_name
 
@@ -152,7 +156,7 @@ def get_subtitle_params():
     """获取字幕参数"""
     return {
         'subtitle_enabled': st.session_state.get('subtitle_enabled', True),
-        'font_name': st.session_state.get('font_name', ''),
+        'font_name': st.session_state.get('font_name', 'SimHei'),
         'font_size': st.session_state.get('font_size', 60),
         'text_fore_color': st.session_state.get('text_fore_color', '#FFFFFF'),
         'subtitle_position': st.session_state.get('subtitle_position', 'bottom'),

@@ -156,7 +156,7 @@ def process_single_video(
         raise FileNotFoundError(f"找不到视频文件: {input_path}")
 
     # 构建基本命令
-    command = ['ffmpeg', '-y']
+    command = ['ffmpeg', '-nostdin', '-y']
 
     # 安全检查：如果在Windows上，则慎用硬件加速
     is_windows = os.name == 'nt'
@@ -255,11 +255,22 @@ def process_single_video(
     # 执行命令
     try:
         # logger.info(f"执行FFmpeg命令: {' '.join(command)}")
-        process = subprocess.run(command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        # logger.info(f"视频处理成功: {output_path}")
-        return output_path
+        process = subprocess.run(
+            command,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            start_new_session=True
+        )
+        if process.returncode == 0:
+            return output_path
+        error_msg = process.stderr or ""
+        if ("received signal 2" in error_msg.lower() or "sigint" in error_msg.lower()) and os.path.exists(output_path) and os.path.getsize(output_path) > 0:
+            logger.warning("FFmpeg收到SIGINT但已生成输出文件，继续使用该文件")
+            return output_path
+        raise subprocess.CalledProcessError(process.returncode, command, output=process.stdout, stderr=process.stderr)
     except subprocess.CalledProcessError as e:
-        error_msg = e.stderr.decode() if e.stderr else str(e)
+        error_msg = e.stderr if isinstance(e.stderr, str) else (e.stderr.decode() if e.stderr else str(e))
         logger.error(f"处理视频失败: {error_msg}")
 
         # 如果使用硬件加速失败，尝试使用软件编码
@@ -301,7 +312,7 @@ def process_single_video(
                 logger.info(f"使用软件编码成功处理视频: {output_path}")
                 return output_path
             except subprocess.CalledProcessError as fallback_error:
-                fallback_error_msg = fallback_error.stderr.decode() if fallback_error.stderr else str(fallback_error)
+                fallback_error_msg = fallback_error.stderr if isinstance(fallback_error.stderr, str) else (fallback_error.stderr.decode() if fallback_error.stderr else str(fallback_error))
                 logger.error(f"软件编码备选方案也失败: {fallback_error_msg}")
 
                 # 尝试最基本的编码参数
@@ -317,7 +328,7 @@ def process_single_video(
                     logger.info(f"使用基本编码参数成功处理视频: {output_path}")
                     return output_path
                 except subprocess.CalledProcessError as basic_error:
-                    basic_error_msg = basic_error.stderr.decode() if basic_error.stderr else str(basic_error)
+                    basic_error_msg = basic_error.stderr if isinstance(basic_error.stderr, str) else (basic_error.stderr.decode() if basic_error.stderr else str(basic_error))
                     logger.error(f"基本编码参数也失败: {basic_error_msg}")
                     raise RuntimeError(f"无法处理视频 {input_path}: 所有编码方案都失败")
 
@@ -620,7 +631,7 @@ def combine_clip_videos(
             return output_video_path
 
         except subprocess.CalledProcessError as e:
-            logger.error(f"合并视频过程中出错: {e.stderr.decode() if e.stderr else str(e)}")
+            logger.error(f"合并视频过程中出错: {e.stderr if isinstance(e.stderr, str) else (e.stderr.decode() if e.stderr else str(e))}")
 
             # 尝试备用合并方法 - 最简单的无音频合并
             logger.info("尝试备用合并方法 - 无音频合并")

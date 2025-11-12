@@ -58,11 +58,13 @@ def initialize_prompts():
     from . import documentary
     from . import short_drama_editing  
     from . import short_drama_narration
+    from . import game_ddz_blow_king
     
     # 注册各模块的提示词
     documentary.register_prompts()
     short_drama_editing.register_prompts()
     short_drama_narration.register_prompts()
+    game_ddz_blow_king.register_prompts()
 
 # 自动初始化
 initialize_prompts()

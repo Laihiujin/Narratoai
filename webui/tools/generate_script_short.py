@@ -32,14 +32,14 @@ def generate_script_short(tr, params, custom_clips=5):
 
     try:
         with st.spinner("正在生成脚本..."):
-            text_provider = config.app.get('text_llm_provider', 'gemini').lower()
-            text_api_key = config.app.get(f'text_{text_provider}_api_key')
-            text_model = config.app.get(f'text_{text_provider}_model_name')
-            text_base_url = config.app.get(f'text_{text_provider}_base_url')
-            vision_llm_provider = st.session_state.get('vision_llm_providers').lower()
-            vision_api_key = st.session_state.get(f'vision_{vision_llm_provider}_api_key', "")
-            vision_model = st.session_state.get(f'vision_{vision_llm_provider}_model_name', "")
-            vision_base_url = st.session_state.get(f'vision_{vision_llm_provider}_base_url', "")
+            text_provider = (config.app.get('text_llm_provider', 'litellm') or 'litellm').lower()
+            text_api_key = st.session_state.get(f'text_{text_provider}_api_key') or config.app.get(f'text_{text_provider}_api_key')
+            text_model = st.session_state.get(f'text_{text_provider}_model_name') or config.app.get(f'text_{text_provider}_model_name')
+            text_base_url = st.session_state.get(f'text_{text_provider}_base_url') or config.app.get(f'text_{text_provider}_base_url')
+            vision_llm_provider = (st.session_state.get('vision_llm_provider') or config.app.get('vision_llm_provider', 'litellm')).lower()
+            vision_api_key = st.session_state.get(f'vision_{vision_llm_provider}_api_key') or config.app.get(f'vision_{vision_llm_provider}_api_key', "")
+            vision_model = st.session_state.get(f'vision_{vision_llm_provider}_model_name') or config.app.get(f'vision_{vision_llm_provider}_model_name', "")
+            vision_base_url = st.session_state.get(f'vision_{vision_llm_provider}_base_url') or config.app.get(f'vision_{vision_llm_provider}_base_url', "")
 
             update_progress(20, "开始准备生成脚本")
 

@@ -54,6 +54,7 @@ def render_script_file(tr, params):
         (tr("Auto Generate"), "auto"),
         (tr("Short Generate"), "short"),
         (tr("Short Drama Summary"), "summary"),
+        (tr("DDZ Highlights"), "ddz_highlights"),
         (tr("Upload Script"), "upload_script")
     ]
 
@@ -307,6 +308,8 @@ def render_script_buttons(tr, params):
         button_name = tr("Generate Short Video Script")
     elif script_path == "summary":
         button_name = tr("生成短剧解说脚本")
+    elif script_path == "ddz_highlights":
+        button_name = tr("识别斗地主高光")
     elif script_path.endswith("json"):
         button_name = tr("Load Video Script")
     else:
@@ -321,11 +324,13 @@ def render_script_buttons(tr, params):
             custom_clips = st.session_state.get('custom_clips')
             generate_script_short(tr, params, custom_clips)
         elif script_path == "summary":
-            # 执行 短剧解说 脚本生成
             subtitle_path = st.session_state.get('subtitle_path')
             video_theme = st.session_state.get('video_theme')
             temperature = st.session_state.get('temperature')
             generate_script_short_sunmmary(params, subtitle_path, video_theme, temperature)
+        elif script_path == "ddz_highlights":
+            from webui.tools.generate_ddz_highlights import generate_ddz_highlights
+            generate_ddz_highlights(params)
         else:
             load_script(tr, script_path)
 
