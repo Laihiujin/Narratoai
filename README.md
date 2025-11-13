@@ -42,44 +42,6 @@ NarratoAI 是一个自动化影视解说工具，基于LLM实现文案撰写、�
 - 2024.11.10 发布官方文档，详情参见 [官方文档](https://p9mf6rjv3c.feishu.cn/wiki/SP8swLLZki5WRWkhuFvc2CyInDg)
 - 2024.11.10 发布新版本 v0.3.5；优化视频剪辑流程，
 
-## 重磅福利 🎉
-> 1️⃣
-> **开发者专属福利：一站式AI平台，注册即送体验金！**
->
-> 还在为接入各种AI模型烦恼吗？向您推荐 302.AI，一个企业级的AI资源中心。一次接入，即可调用上百种AI模型，涵盖语言、图像、音视频等，按量付费，极大降低开发成本。
->
-> 通过下方我的专属链接注册，**立获1美元免费体验金**，助您轻松开启AI开发之旅。
->
-> **立即注册领取：** [https://share.302.ai/I9P6mP](https://share.302.ai/I9P6mP)
-
----
-> 2️⃣
-> 即日起全面支持硅基流动！注册即享2000万免费Token（价值14元平台配额），剪辑10分钟视频仅需0.1元！  
-> 
-> 🔥 快速领福利：  
-> 1️⃣ 点击链接注册：https://cloud.siliconflow.cn/i/pyOKqFCV  
-> 2️⃣ 使用手机号登录，**务必填写邀请码：pyOKqFCV**  
-> 3️⃣ 领取14元配额，极速体验高性价比AI剪辑  
-> 
-> 💡 小成本大创作：  
-> 硅基流动API Key一键接入，智能剪辑效率翻倍！  
-> （注：邀请码为福利领取唯一凭证，注册后自动到账）  
-> 
-> 立即行动，用「pyOKqFCV」解锁你的AI生产力！
-
-
-## ⚠️谨防被骗 📢
-
-_**1. NarratoAI 是一款完全免费的软件，近期在社交媒体(抖音,B站等)上发现，有人将 NarratoAI 改名后售卖，下面是部分截图，请大家务必提高警惕，切勿上当受骗**_
-
----
-
-<div style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start; gap: 10px;">
-  <img src="https://github.com/user-attachments/assets/9cc0e5e4-bd5b-4655-b5ef-7d9085cdbc50" alt="诈骗截图 1" style="width: 23%; max-width: 250px; height: auto; border: 1px solid #ddd; border-radius: 5px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);">
-  <img src="https://github.com/user-attachments/assets/464b877c-b061-4856-8260-a0ef6fad7e52" alt="诈骗截图 2" style="width: 23%; max-width: 250px; height: auto; border: 1px solid #ddd; border-radius: 5px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);">
-  <img src="https://github.com/user-attachments/assets/9d7a6ea9-4bca-42b5-a61e-7e464037930f" alt="诈骗截图 3" style="width: 23%; max-width: 250px; height: auto; border: 1px solid #ddd; border-radius: 5px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);">
-  <img src="https://github.com/user-attachments/assets/09eeb94d-c670-4d7d-ba19-c0468bed3291" alt="诈骗截图 4" style="width: 23%; max-width: 250px; height: auto; border: 1px solid #ddd; border-radius: 5px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);">
-</div>
 
 ---
 
@@ -143,32 +105,6 @@ streamlit run webui.py --server.maxUploadSize=2048
 - Windows 10/11 或 MacOS 11.0 以上系统
 - [Python 3.12+](https://www.python.org/downloads/)
 
-## 反馈建议 📢
-
-👏 1. 可以提交 [issue](https://github.com/linyqh/NarratoAI/issues)或者 [pull request](https://github.com/linyqh/NarratoAI/pulls)
-
-💬 2. [加入开源社区交流群](https://github.com/linyqh/NarratoAI/wiki)
-
-📷 3. 关注公众号【NarratoAI助手】，掌握最新资讯
-
-## 参考项目 📚
-- https://github.com/FujiwaraChoki/MoneyPrinter
-- https://github.com/harry0703/MoneyPrinterTurbo
-
-该项目基于以上项目重构而来，增加了影视解说功能，感谢大佬的开源精神 🥳🥳🥳 
-
-## 请作者喝一杯咖啡 ☕️
-<div style="display: flex; justify-content: space-between;">
-  <img src="https://github.com/user-attachments/assets/5038ccfb-addf-4db1-9966-99415989fd0c" alt="Image 1" style="width: 350px; height: 350px; margin: auto;"/>
-  <img src="https://github.com/user-attachments/assets/07d4fd58-02f0-425c-8b59-2ab94b4f09f8" alt="Image 2" style="width: 350px; height: 350px; margin: auto;"/>
-</div>
-
-## 赞助
-[![Powered by DartNode](https://dartnode.com/branding/DN-Open-Source-sm.png)](https://dartnode.com "Powered by DartNode - Free VPS for Open Source")
-
-## 许可证 📝
-
-点击查看 [`LICENSE`](LICENSE) 文件
 
 ## Star History
 
